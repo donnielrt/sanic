@@ -10,6 +10,10 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.get('/', function(req, res) {
+    res.send('Ready!');
+});
+
 app.post('/', function(req, res) {
     var excitement = req.body.excitement || Math.random() * 10;
     var repeat = function(str, count) {
