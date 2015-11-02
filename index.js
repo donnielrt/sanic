@@ -4,6 +4,8 @@ var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 
+var port = process.env.NODE_ENV === 'product' ? 80 : 3000;
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -25,6 +27,6 @@ app.post('/', function(req, res) {
     res.send(tmpl({ howFast: howFast }));
 });
 
-http.listen(3000, function() {
+http.listen(port, function() {
     console.log('Ready!');
 });
