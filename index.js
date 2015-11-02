@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-    var excitement = req.body.excitement || Math.random() * 10;
+    var excitement = req.body.text || Math.random() * 10;
     var repeat = function(str, count) {
         var output = str;
         for (var ctr = 0; ctr < count - 1; ctr++) {
