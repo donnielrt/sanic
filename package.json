@@ -4,6 +4,7 @@
   "description": "Gotta go fast!",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
     "test": "npm test"
   },
   "repository": {
