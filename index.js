@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 
-var port = process.env.NODE_ENV === 'production' ? 80 : 3000;
+var port = process.env.PORT ? process.env.PORT : 3000;
 
 app.use(bodyParser.urlencoded({
     extended: true
