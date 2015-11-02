@@ -32,5 +32,5 @@ app.post('/', function(req, res) {
 });
 
 http.listen(port, function() {
-    console.log('Ready!');
+    console.log('Ready on port ' + port + '!');
 });
