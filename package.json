@@ -1,0 +1,27 @@
+{
+  "name": "sanic",
+  "version": "1.0.0",
+  "description": "Gotta go fast!",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donnielrt/sanic.git"
+  },
+  "keywords": [
+    "sanic"
+  ],
+  "author": "Donniel Thomas <donniel@mobify.com> (http://www.donniel.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/donnielrt/sanic/issues"
+  },
+  "homepage": "https://github.com/donnielrt/sanic",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "lodash": "^3.10.1"
+  }
+}
