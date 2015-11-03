@@ -38,7 +38,7 @@ app.post('/', function(req, res) {
     var slackOptions = {
         hostname: 'hooks.slack.com',
         port: 443,
-        path: '/services/T031VND2D/B0DMPEDL2/hCwClN3buIm9dR6kwhztfXRh',
+        path: process.env.SLACK_ENDPOINT,
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     };
