@@ -15,28 +15,20 @@ var repeat = function(str, count) {
     return output;
 };
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+// Gotta go fast!
+var catchPhrase = function(excitement) {
+    var howFast;
 
-app.get('/', function(req, res) {
-    res.send('Ready!');
-});
+    // Range-checks, yo
+    excitement = excitement && Math.max(Math.min(excitement, 100), 1);
+    howFast = repeat('a', excitement || Math.floor(Math.random() * 10, 10));
 
-app.post('/test', function() {
-    console.log('Received data');
-});
+    return _.template('Gotta go f<%= howFast %>st!')({ howFast: howFast });
+};
 
-app.post('/', function(req, res) {
-    var excitement = Math.min(req.body.text, 100) || Math.floor(Math.random() * 10, 10);
-
-    var howFast = repeat('a', excitement);
-    var sanicSaysWut = _.template('Gotta go f<%= howFast %>st!')({ howFast: howFast });
-
-    console.log('Sending to ', process.env.SLACK_ENDPOINT);
-
+var displaySlackMessage = function(message) {
     // For Slack
-    var slackData = { text: sanicSaysWut };
+    var slackData = { text: message };
     var slackOptions = {
         hostname: 'hooks.slack.com',
         port: 443,
@@ -48,6 +40,24 @@ app.post('/', function(req, res) {
 
     slackReq.write(JSON.stringify(slackData));
     slackReq.end();
+};
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.get('/', function(req, res) {
+    res.send('Ready!');
+});
+
+app.post('/say', function(req, res) {
+    displaySlackMessage(req.body.text || catchPhrase());
+});
+
+app.post('/', function(req, res) {
+    var sanicSaysWut = catchPhrase(parseInt(req.body.text, 10));
+
+    displaySlackMessage(sanicSaysWut);
 
     res.send(sanicSaysWut);
 });
