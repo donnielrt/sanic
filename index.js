@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var _ = require('lodash');
 var https = require('https');
 
-var port = process.env.PORT ? process.env.PORT : 3000;
+var port = process.env.PORT || 3000;
 var repeat = function(str, count) {
     var output = str;
     for (var ctr = 0; ctr < count - 1; ctr++) {
@@ -32,6 +32,8 @@ app.post('/', function(req, res) {
 
     var howFast = repeat('a', excitement);
     var sanicSaysWut = _.template('Gotta go f<%= howFast %>st!')({ howFast: howFast });
+
+    console.log('Sending to ', process.env.SLACK_ENDPOINT);
 
     // For Slack
     var slackData = { text: sanicSaysWut };
