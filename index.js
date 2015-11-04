@@ -52,6 +52,8 @@ app.get('/', function(req, res) {
 
 app.post('/say', function(req, res) {
     displaySlackMessage(req.body.text || catchPhrase());
+
+    res.send(req.body.text);
 });
 
 app.post('/', function(req, res) {
